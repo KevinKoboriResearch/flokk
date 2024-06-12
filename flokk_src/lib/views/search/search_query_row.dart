@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SearchQueryRow extends StatelessWidget {
-  final SearchBarState state;
+  final CustomSearchBarState state;
 
   const SearchQueryRow(this.state, {Key? key}) : super(key: key);
 
@@ -34,7 +34,7 @@ class SearchQueryRow extends StatelessWidget {
     return LayoutBuilder(
       builder: (_, constraints) {
         //Bind to search engine for results
-        return ListenableBuilder(
+        return CustomListenableBuilder(
             listenable: state.tmpSearch,
             builder: (_, __) {
               // Calculate the width of the text input based off of the width of the search bar
@@ -61,7 +61,7 @@ class SearchQueryRow extends StatelessWidget {
                   ConstrainedBox(
                     constraints: BoxConstraints(maxWidth: barQueryWidth),
                     child: StyledHorizontalScrollView(
-                      autoScrollDuration: Durations.fast,
+                      autoScrollDuration: CustomDurations.fast,
                       autoScrollCurve: Curves.easeOut,
                       child: Row(
                         children: <Widget>[

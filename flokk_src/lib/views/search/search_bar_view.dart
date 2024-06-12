@@ -14,8 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-class SearchBarView extends WidgetView<SearchBar, SearchBarState> {
-  SearchBarView(SearchBarState state, {Key? key}) : super(state, key: key);
+class SearchBarView extends WidgetView<CustomSearchBar, CustomSearchBarState> {
+  SearchBarView(CustomSearchBarState state, {Key? key}) : super(state, key: key);
 
   bool get isOpen => state.isOpen;
 
@@ -63,7 +63,7 @@ class SearchBarView extends WidgetView<SearchBar, SearchBarState> {
                 SearchResults(state)
                     // Fade search results out when we're not open
                     .opacity(isOpen ? 1 : 0, animate: true)
-                    .animate(Durations.fast, Curves.easeOut)
+                    .animate(CustomDurations.fast, Curves.easeOut)
                     .expanded()
               ],
             ),
@@ -87,7 +87,7 @@ class SearchBarView extends WidgetView<SearchBar, SearchBarState> {
 /// Handles the transition from open and closed, the content is a Column, contains the SearchBox, and SearchResults
 class _AnimatedSearchCard extends StatelessWidget {
   final Widget? child;
-  final SearchBarState searchBar;
+  final CustomSearchBarState searchBar;
 
   const _AnimatedSearchCard(this.searchBar, {Key? key, this.child}) : super(key: key);
 
@@ -102,7 +102,7 @@ class _AnimatedSearchCard extends StatelessWidget {
     return StyledContainer(isOpen || hasQuery ? theme.surface : theme.surface.withOpacity(.4),
         height: isOpen ? openHeight : searchBar.widget.closedHeight,
         borderRadius: BorderRadius.circular(6),
-        duration: Durations.fast,
+        duration: CustomDurations.fast,
         //border: Border.all(color: Colors.grey.withOpacity(isOpen ? .3 : 0)),
         shadows: isOpen || hasQuery ? Shadows.m(theme.accent1Darker) : [],
         child: child);

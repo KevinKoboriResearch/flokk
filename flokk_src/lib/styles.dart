@@ -4,7 +4,7 @@ import 'package:textstyle_extensions/textstyle_extensions.dart';
 
 export 'package:textstyle_extensions/textstyle_extensions.dart';
 
-class Durations {
+class CustomDurations {
   static const Duration fastest = Duration(milliseconds: 150);
 
   static const Duration fast = Duration(milliseconds: 250);
@@ -132,7 +132,7 @@ class Shadows {
 
   static double get mRadius => 8;
 
-  static List<BoxShadow> m(Color color, [ double opacity = 0]) {
+  static List<BoxShadow> m(Color color, [double opacity = 0]) {
     return enabled
         ? [
             BoxShadow(
@@ -148,7 +148,7 @@ class Shadows {
               offset: Offset(1, 0),
             )
           ]
-        : const<BoxShadow>[];
+        : const <BoxShadow>[];
   }
 }
 
@@ -185,4 +185,3 @@ class Corners {
 
   static Radius get s10Radius => Radius.circular(s10);
 }
-

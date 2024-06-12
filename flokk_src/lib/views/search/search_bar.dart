@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-class SearchBar extends StatefulWidget {
+class CustomSearchBar extends StatefulWidget {
   final void Function(ContactData)? onContactPressed;
   final VoidCallback? onSearchSubmitted;
   final double closedHeight;
@@ -15,7 +15,7 @@ class SearchBar extends StatefulWidget {
   final bool narrowMode;
   final double topPadding;
 
-  const SearchBar({
+  const CustomSearchBar({
     Key? key,
     required this.searchEngine,
     required this.closedHeight,
@@ -26,10 +26,10 @@ class SearchBar extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  SearchBarState createState() => SearchBarState();
+  CustomSearchBarState createState() => CustomSearchBarState();
 }
 
-class SearchBarState extends State<SearchBar> {
+class CustomSearchBarState extends State<CustomSearchBar> {
   final SearchEngine tmpSearch = SearchEngine();
   final GlobalKey<StyledSearchTextInputState> textKey = GlobalKey();
   final GlobalKey<StyledSearchTextInputState> resultsColumnKey = GlobalKey();
@@ -98,8 +98,7 @@ class SearchBarState extends State<SearchBar> {
 
   void handleContactPressed(ContactData c) async {
     MainScaffoldState scaffold = context.read();
-    if (!await scaffold.showDiscardWarningIfNecessary())
-      return;
+    if (!await scaffold.showDiscardWarningIfNecessary()) return;
     tmpSearch.addFilterContact(c.nameFull);
     clearQueryString();
     handleSearchSubmitted();
@@ -171,5 +170,4 @@ class SearchBarState extends State<SearchBar> {
 
   @override
   Widget build(BuildContext context) => SearchBarView(this);
-
 }

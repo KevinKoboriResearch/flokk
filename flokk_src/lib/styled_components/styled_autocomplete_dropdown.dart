@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:flokk/_internal/components/one_line_text.dart';
 import 'package:flokk/_internal/utils/string_utils.dart';
 import 'package:flokk/_internal/utils/utils.dart';
@@ -22,7 +23,13 @@ class StyledAutoCompleteDropdown extends StatefulWidget {
   final void Function(bool)? onFocusChanged;
 
   const StyledAutoCompleteDropdown(
-      {Key? key, this.initialValue, this.hint = "", this.items = const<String>[], this.onChanged, this.onFocusChanged, this.maxHeight = 500})
+      {Key? key,
+      this.initialValue,
+      this.hint = "",
+      this.items = const <String>[],
+      this.onChanged,
+      this.onFocusChanged,
+      this.maxHeight = 500})
       : super(key: key);
 
   @override
@@ -139,7 +146,7 @@ class _StyledAutoCompleteDropdownState extends State<StyledAutoCompleteDropdown>
               onChanged: _handleValueChanged),
           StyledImageIcon(StyledIcons.dropdownClose, size: 12, color: theme.greyStrong)
               .rotate(angle: downArrow ? 0 : pi, animate: true)
-              .animate(Durations.fast, Curves.easeOut)
+              .animate(CustomDurations.fast, Curves.easeOut)
               .alignment(Alignment.topLeft)
               .gestures(onTap: _handleArrowTap)
               .positioned(right: 4, top: 4),

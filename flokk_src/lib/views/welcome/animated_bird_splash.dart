@@ -89,7 +89,7 @@ class _AnimatedBirdSplashState extends State<AnimatedBirdSplashWidget> with Sing
               .alignment(Alignment.bottomCenter)
               .translate(offset: Offset(0, 46)) // Offset text below the bottom edge of the images
               .opacity(widget.showText ? 1 : 0, animate: true)
-              .animate(Durations.slow, Curves.easeOut)
+              .animate(CustomDurations.slow, Curves.easeOut)
               .positioned(left: 0, top: 0, right: 0, bottom: 0)
         ]).center(),
 

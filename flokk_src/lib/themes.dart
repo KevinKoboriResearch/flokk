@@ -119,9 +119,7 @@ class AppTheme {
           primaryContainer: accent1Darker,
           secondary: accent2,
           secondaryContainer: ColorUtils.shiftHsl(accent2, -.2),
-          background: bg1,
           surface: surface,
-          onBackground: txt,
           onSurface: txt,
           onError: txt,
           onPrimary: accentTxt,
@@ -129,21 +127,22 @@ class AppTheme {
           error: error),
     );
     return t.copyWith(
-        inputDecorationTheme: InputDecorationTheme(
-          border: ThinUnderlineBorder(),
-        ),
-        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        textSelectionTheme: TextSelectionThemeData(
-            selectionColor: greyWeak,
-            selectionHandleColor: Colors.transparent,
-            cursorColor: accent1,
-        ),
-        buttonTheme: ButtonThemeData(
-            buttonColor: accent1,
-        ),
-        highlightColor: accent1,
-        toggleableActiveColor: accent1);
+      inputDecorationTheme: InputDecorationTheme(
+        border: ThinUnderlineBorder(),
+      ),
+      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      textSelectionTheme: TextSelectionThemeData(
+        selectionColor: greyWeak,
+        selectionHandleColor: Colors.transparent,
+        cursorColor: accent1,
+      ),
+      buttonTheme: ButtonThemeData(
+        buttonColor: accent1,
+      ),
+      highlightColor: accent1,
+      // toggleableActiveColor: accent1,
+    );
   }
 
-  Color shift(Color c, double d) => ColorUtils.shiftHsl(c, d * (isDark? -1 : 1));
+  Color shift(Color c, double d) => ColorUtils.shiftHsl(c, d * (isDark ? -1 : 1));
 }

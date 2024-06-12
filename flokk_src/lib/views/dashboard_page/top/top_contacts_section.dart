@@ -64,7 +64,7 @@ class _TopContactsSectionState extends State<TopContactsSection> {
                   index: tabIndex,
                   sections: ["Favorites", "Recently Active"],
                   onTabPressed: _handleTabPressed,
-                ).constrained(maxWidth: tabWidth, animate: true).animate(Durations.medium, Curves.easeOut),
+                ).constrained(maxWidth: tabWidth, animate: true).animate(CustomDurations.medium, Curves.easeOut),
               ],
             ).padding(horizontal: Insets.lGutter),
             VSpace(Insets.sm),
@@ -89,7 +89,8 @@ class _ContactCardList extends StatelessWidget {
   final List<ContactData> contacts;
   final Widget placeholder;
 
-  const _ContactCardList(this.state, {Key? key, this.contacts = const<ContactData>[], required this.placeholder}) : super(key: key);
+  const _ContactCardList(this.state, {Key? key, this.contacts = const <ContactData>[], required this.placeholder})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

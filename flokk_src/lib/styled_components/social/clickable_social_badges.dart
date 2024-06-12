@@ -143,7 +143,7 @@ class FadeInWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0, end: 1),
-      duration: Durations.fastest,
+      duration: CustomDurations.fastest,
       builder: (_, value, child) => Opacity(opacity: value, child: child),
       child: child,
     );

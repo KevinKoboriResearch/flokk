@@ -105,7 +105,7 @@ class _ExpandingMiniformContainerState extends State<ExpandingMiniformContainer>
         child: AnimatedSize(
           alignment: Alignment.topLeft,
           curve: Curves.easeOut,
-          duration: Durations.fast,
+          duration: CustomDurations.fast,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

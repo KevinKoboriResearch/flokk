@@ -1,7 +1,6 @@
 import 'package:flokk/_internal/components/listenable_builder.dart';
 import 'package:flokk/_internal/components/spacing.dart';
 import 'package:flokk/_internal/widget_view.dart';
-import 'package:flokk/app_extensions.dart';
 import 'package:flokk/commands/contacts/refresh_contacts_command.dart';
 import 'package:flokk/data/contact_data.dart';
 import 'package:flokk/models/contacts_model.dart';
@@ -18,7 +17,12 @@ class ContactsPage extends StatefulWidget {
   final List<ContactData> checkedContacts;
   final ContactData? selectedContact;
 
-  const ContactsPage({Key? key, required this.searchEngine, this.checkedContacts = const<ContactData>[], required this.selectedContact}) : super(key: key);
+  const ContactsPage(
+      {Key? key,
+      required this.searchEngine,
+      this.checkedContacts = const <ContactData>[],
+      required this.selectedContact})
+      : super(key: key);
 
   @override
   ContactsPageState createState() => ContactsPageState();
@@ -44,32 +48,36 @@ class _ContactsPageView extends WidgetView<ContactsPage, ContactsPageState> {
           VSpace(Insets.sm),
 
           /// Bind to SearchEngine
-          ListenableBuilder(
-            listenable: widget.searchEngine,
-            builder: (_, __) {
-              /// Filter active contacts using the search engine provided
-              List<ContactData> sorted = widget.searchEngine.getResults();
+          Expanded(
+            child: CustomListenableBuilder(
+              listenable: widget.searchEngine,
+              builder: (_, __) {
+                /// Filter active contacts using the search engine provided
+                List<ContactData> sorted = widget.searchEngine.getResults();
 
-              /// Wrap content in PlaceholderSwitcher, which will handle empty results
-              return PlaceholderContentSwitcher(
-                hasContent: () => sorted.isNotEmpty,
-                placeholder: ContactListPlaceholder(isSearching: widget.searchEngine.hasQuery),
-                showOutline: false,
-                placeholderPadding: EdgeInsets.only(top: Insets.m * 1.5, right: Insets.m, bottom: Insets.m),
+                /// Wrap content in PlaceholderSwitcher, which will handle empty results
+                return PlaceholderContentSwitcher(
+                  hasContent: () => sorted.isNotEmpty,
+                  placeholder: ContactListPlaceholder(isSearching: widget.searchEngine.hasQuery),
+                  showOutline: false,
+                  placeholderPadding: EdgeInsets.only(top: Insets.m * 1.5, right: Insets.m, bottom: Insets.m),
 
-                /// ContactList
-                content: ContactsListWithHeaders(
-                  contacts: sorted,
-                  // Indicate to page that it should show search-results formatting
-                  searchMode: widget.searchEngine.hasQuery,
-                  selectedContact: widget.selectedContact,
-                  checkedContacts: widget.checkedContacts,
-                  orderBy: widget.searchEngine.orderBy,
-                  orderDesc: widget.searchEngine.orderDesc,
-                ),
-              );
-            },
-          ).expanded(),
+                  /// ContactList
+                  content: ContactsListWithHeaders(
+                    contacts: sorted,
+                    // Indicate to page that it should show search-results formatting
+                    searchMode: widget.searchEngine.hasQuery,
+                    selectedContact: widget.selectedContact,
+                    checkedContacts: widget.checkedContacts,
+                    orderBy: widget.searchEngine.orderBy,
+                    orderDesc: widget.searchEngine.orderDesc,
+                  ),
+                );
+              },
+            ),
+          ),
+          // TODO(KEVIN): NOW
+          // .expanded(),
           VSpace(Insets.m),
         ]),
       ],

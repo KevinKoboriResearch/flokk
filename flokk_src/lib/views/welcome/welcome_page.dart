@@ -99,7 +99,7 @@ class WelcomePageState extends State<WelcomePage> {
     await RefreshSocialCommand(context).execute(context.read<ContactsModel>().allContacts);
 
     /// Show main app view
-    Navigator.push<void>(context, PageRoutes.fade(() => MainScaffold(), Durations.slow.inMilliseconds * .001));
+    Navigator.push<void>(context, PageRoutes.fade(() => MainScaffold(), CustomDurations.slow.inMilliseconds * .001));
   }
 
   void handleUrlClicked() => UrlLauncher.open(authUrl);
@@ -182,7 +182,7 @@ class _WelcomePageStateView extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         body: TweenAnimationBuilder<double>(
-          duration: Durations.slow,
+          duration: CustomDurations.slow,
           tween: Tween(begin: 0, end: 1),
           builder: (_, value, ___) => Opacity(
             opacity: value,
@@ -199,7 +199,7 @@ class _WelcomePageStateView extends StatelessWidget {
                       .opacity(1.0)
                       .padding(right: (state.showContent && state.twoColumnMode ? contentWidth : 0), animate: true)
                       .animate(
-                        skipBirdTransition ? 0.seconds : Durations.slow,
+                        skipBirdTransition ? 0.seconds : CustomDurations.slow,
                         Curves.easeOut,
                       ),
                   _WelcomeContentStack()
@@ -209,7 +209,7 @@ class _WelcomePageStateView extends StatelessWidget {
                         isClosed: !state.showContent,
                         closeX: context.widthPx,
                         curve: Curves.easeOut,
-                        duration: Durations.slow.inMilliseconds * .001,
+                        duration: CustomDurations.slow.inMilliseconds * .001,
                       )
                       // Pin the left side on fullscreen, respect existing width otherwise
                       .positioned(top: 0, bottom: 0, right: 0, left: state.twoColumnMode ? null : 0)
@@ -243,7 +243,7 @@ class _WelcomeContentStack extends StatelessWidget {
         : Stack(
             children: [
               FadingIndexedStack(
-                duration: Durations.slow,
+                duration: CustomDurations.slow,
                 index: state.pageIndex,
                 children: <Widget>[
                   WelcomePageStep1(singleColumnMode: !state.twoColumnMode).scrollable().center(),

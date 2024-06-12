@@ -19,9 +19,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 /// SEARCH RESULTS LIST
-/// Binds to notifications from the tmpSearchEngine using ListenableBuilder
+/// Binds to notifications from the tmpSearchEngine using CustomListenableBuilder
 class SearchResults extends StatelessWidget {
-  final SearchBarState state;
+  final CustomSearchBarState state;
 
   const SearchResults(this.state, {Key? key}) : super(key: key);
 
@@ -30,7 +30,7 @@ class SearchResults extends StatelessWidget {
     AppTheme theme = context.watch();
     return LayoutBuilder(
       builder: (_, constraints) {
-        return ListenableBuilder(
+        return CustomListenableBuilder(
           listenable: state.tmpSearch,
           builder: (_, __) {
             //Add a callback hook, so the column can pass us it's size after layout.
@@ -46,8 +46,9 @@ class SearchResults extends StatelessWidget {
             final List<StyledLabelPill> labelPills = tags
                 .take(maxResults)
                 .map((tag) => StyledLabelPill(tag.toUpperCase(),
-                        textStyle: TextStyles.Footnote.textColor(theme.grey).letterSpace(0).textHeight(1.63),
-                        borderRadius: Corners.s5, onPressed: () => state.handleTagPressed(tag)))
+                    textStyle: TextStyles.Footnote.textColor(theme.grey).letterSpace(0).textHeight(1.63),
+                    borderRadius: Corners.s5,
+                    onPressed: () => state.handleTagPressed(tag)))
                 .toList();
 
             final List<_ContactSearchListItem> contactListItems = contacts
@@ -76,6 +77,7 @@ class SearchResults extends StatelessWidget {
                       ),
                     ),
                   },
+
                   /// Contacts / People
                   if (contacts.isNotEmpty) ...{
                     _SearchCategory(
@@ -90,6 +92,7 @@ class SearchResults extends StatelessWidget {
                       ),
                     ),
                   },
+
                   /// Submit Btn
                   if (contacts.length > 6) ...{
                     TransparentTextBtn(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ListenableBuilder extends AnimatedBuilder {
-  ListenableBuilder({
+class CustomListenableBuilder extends AnimatedBuilder {
+  CustomListenableBuilder({
     Key? key,
     required Listenable listenable,
     required TransitionBuilder builder,

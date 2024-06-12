@@ -89,7 +89,7 @@ class MainScaffoldView extends WidgetView<MainScaffold, MainScaffoldState> {
     editPanel = FocusTraversalGroup(child: editPanel);
 
     /// Search Bar
-    Widget searchBar = SearchBar(
+    Widget searchBar = CustomSearchBar(
       key: MainScaffold.searchBarKey,
       closedHeight: topBarHeight - 5,
       narrowMode: !showLeftMenu,

@@ -19,7 +19,7 @@ class _LightDarkToggleSwitchState extends State<LightDarkToggleSwitch> {
   int lastSwitchTime = 0;
 
   void _handleTogglePressed(BuildContext context) {
-    if (DateTime.now().millisecondsSinceEpoch - lastSwitchTime < Durations.medium.inMilliseconds) {
+    if (DateTime.now().millisecondsSinceEpoch - lastSwitchTime < CustomDurations.medium.inMilliseconds) {
       return;
     }
     lastSwitchTime = DateTime.now().millisecondsSinceEpoch;
@@ -45,12 +45,11 @@ class _LightDarkToggleSwitchState extends State<LightDarkToggleSwitch> {
           ),
           TweenAnimationBuilder(
             tween: Tween<double>(begin: 0, end: theme.isDark ? 1 : 0),
-            duration: Durations.fastest,
+            duration: CustomDurations.fastest,
             builder: (_, value, __) => StyledContainer(
               theme.surface,
-              duration: Durations.medium,
-              margin: EdgeInsets.only(
-                  top: 2, left: 2 + (innerWidth - 20 - 4) * (value as double? ?? 1), right: 2),
+              duration: CustomDurations.medium,
+              margin: EdgeInsets.only(top: 2, left: 2 + (innerWidth - 20 - 4) * (value as double? ?? 1), right: 2),
               borderRadius: BorderRadius.circular(99),
               width: 20,
               height: 20,

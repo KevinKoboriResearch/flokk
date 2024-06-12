@@ -52,7 +52,7 @@ class _NativeSmokeTestState extends State<NativeSmokeTest> {
               child: Text("Open url"),
             ),
             MaterialButton(
-              onPressed: () => Clipboard.setData(ClipboardData()),
+              onPressed: () => Clipboard.setData(ClipboardData(text: '')),
               child: Text("Copy \"clipboard test\" to clipboard"),
             ),
             MaterialButton(

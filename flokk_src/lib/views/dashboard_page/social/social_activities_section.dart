@@ -44,7 +44,8 @@ class _SocialActivitySectionState extends State<SocialActivitySection> {
         bool useTabView = constraints.maxWidth < PageBreaks.TabletPortrait - 100;
 
         /// Determine which tab should be selected
-        var sectionType = layoutContext.select<AppModel, DashboardSocialSectionType>((model) => model.dashSocialSection);
+        var sectionType =
+            layoutContext.select<AppModel, DashboardSocialSectionType>((model) => model.dashSocialSection);
         int tabIndex = 0;
         if (sectionType == DashboardSocialSectionType.Twitter) tabIndex = 1;
         if (sectionType == DashboardSocialSectionType.Git) tabIndex = 2;
@@ -104,13 +105,13 @@ class _SocialActivitySectionState extends State<SocialActivitySection> {
                   index: tabIndex,
                   sections: ["All", "Twitter", "GitHub"],
                   onTabPressed: _handleTabPressed,
-                ).constrained(maxWidth: tabWidth, animate: true).animate(Durations.medium, Curves.easeOut),
+                ).constrained(maxWidth: tabWidth, animate: true).animate(CustomDurations.medium, Curves.easeOut),
               ],
             ),
             VSpace(Insets.l * .75),
             FadingIndexedStack(
               index: tabIndex,
-              duration: Durations.fastest,
+              duration: CustomDurations.fastest,
               children: [
                 /// This looks weird, but it's really pretty robust / elegant
                 /// Create 3 children, only the child that matches tabIndex will get the latest data, the previous index will fadeout while retaining it's old state.

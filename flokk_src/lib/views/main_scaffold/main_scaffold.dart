@@ -22,7 +22,7 @@ class MainScaffold extends StatefulWidget {
   static GlobalKey<ContactPanelState> sidePanelKey = GlobalKey();
   static GlobalKey<DashboardPageState> dashboardKey = GlobalKey();
   static GlobalKey<ContactsPageState> contactPageKey = GlobalKey();
-  static GlobalKey<SearchBarState> searchBarKey = GlobalKey();
+  static GlobalKey<CustomSearchBarState> searchBarKey = GlobalKey();
 
   @override
   MainScaffoldState createState() => MainScaffoldState();
@@ -44,7 +44,7 @@ class MainScaffoldState extends State<MainScaffold> {
   /// Easily lookup the current state of the SidePanel
   ContactPanelState? get contactsPanel => MainScaffold.sidePanelKey.currentState;
 
-  SearchBarState? get searchBar => MainScaffold.searchBarKey.currentState;
+  CustomSearchBarState? get searchBar => MainScaffold.searchBarKey.currentState;
 
   /// Disable scaffold animations, used when changing pages, so the new page does not animate in
   bool skipScaffoldAnims = false;
@@ -82,7 +82,7 @@ class MainScaffoldState extends State<MainScaffold> {
     // Change page
     appModel.currentMainPage = t;
 
-    // Close SearchBar if it's open
+    // Close CustomSearchBar if it's open
     searchBar?.cancel();
 
     //Skip Scaffold animations if the editPanel is currently open, we don't want the new page animating with the closing panel
@@ -162,5 +162,4 @@ class MainScaffoldState extends State<MainScaffold> {
         value: this,
         child: MainScaffoldView(this),
       );
-
 }

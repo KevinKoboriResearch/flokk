@@ -136,7 +136,7 @@ abstract class BaseMiniForm extends StatelessWidget {
       String typeHint = "",
       String? initialText,
       String? initialType,
-      List<String> types = const<String>[],
+      List<String> types = const <String>[],
       void Function(String)? onTextChanged,
       void Function(String)? onTypeChanged,
       VoidCallback? onDelete,
@@ -173,7 +173,7 @@ abstract class BaseMiniForm extends StatelessWidget {
           size: 20,
           onPressed: showDelete ? onDelete : null,
           padding: EdgeInsets.all(Insets.sm),
-        ).opacity(showDelete ? 1 : 0, animate: true).animate(Durations.fast, Curves.linear),
+        ).opacity(showDelete ? 1 : 0, animate: true).animate(CustomDurations.fast, Curves.linear),
       ],
     );
   }
@@ -184,7 +184,8 @@ abstract class BaseMiniForm extends StatelessWidget {
     BuildContext context,
     String hint,
     String typeHint, {
-    List<T> itemList = const [], // NOTE CE: Dart really fails here, default argument values must be const but generic type arguments cannot be used in a const context
+    List<T> itemList =
+        const [], // NOTE CE: Dart really fails here, default argument values must be const but generic type arguments cannot be used in a const context
     List<String> types = const <String>[],
     required T Function() newItemBuilder,
     required bool Function(T) isEmpty,

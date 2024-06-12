@@ -47,7 +47,7 @@ class ContactEventsMiniForm extends BaseMiniForm {
 
         /// Return the actual Column of content
         return SeparatedColumn(
-          separatorBuilder: ()=>VSpace(Insets.sm * 1.5),
+          separatorBuilder: () => VSpace(Insets.sm * 1.5),
           crossAxisAlignment: CrossAxisAlignment.start,
           children: kids,
         );
@@ -95,7 +95,7 @@ class ContactEventsMiniForm extends BaseMiniForm {
           size: 20,
           onPressed: showDelete ? onDelete : null,
           padding: EdgeInsets.all(Insets.sm),
-        ).opacity(showDelete ? 1 : 0, animate: true).animate(Durations.fast, Curves.linear),
+        ).opacity(showDelete ? 1 : 0, animate: true).animate(CustomDurations.fast, Curves.linear),
       ],
     );
   }

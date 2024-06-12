@@ -32,7 +32,7 @@ class StyledTabBar extends StatelessWidget {
           _RoundedBox(fill: theme.accent1)
               .fractionallySizedBox(widthFactor: 1 / sections.length)
               .alignment(Alignment(targetAlignX, 0), animate: true)
-              .animate(Durations.fast, Curves.easeOut),
+              .animate(CustomDurations.fast, Curves.easeOut),
 
           /// Clickable Text labels
           Row(children: clickableLabels)
@@ -57,7 +57,7 @@ class StyledTabBar extends StatelessWidget {
     Color notSelected = theme.isDark ? theme.greyStrong : theme.grey;
 
     return AnimatedDefaultTextStyle(
-      duration: Durations.fast,
+      duration: CustomDurations.fast,
       style: TextStyles.Footnote.textColor(isSelected ? selected : notSelected).scale(fontScale),
       child: OneLineText(e.toUpperCase())
           .center()
