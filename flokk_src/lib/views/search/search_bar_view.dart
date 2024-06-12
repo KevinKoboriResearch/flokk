@@ -19,8 +19,8 @@ class SearchBarView extends WidgetView<CustomSearchBar, CustomSearchBarState> {
 
   bool get isOpen => state.isOpen;
 
-  KeyEventResult _handleKeyPress(FocusNode node, RawKeyEvent evt) {
-    if (evt is RawKeyDownEvent) {
+  KeyEventResult _handleKeyPress(FocusNode node, KeyEvent evt) {
+    if (evt is KeyDownEvent) {
       if (evt.logicalKey == LogicalKeyboardKey.escape) {
         state.cancel();
         return KeyEventResult.handled;
@@ -43,7 +43,7 @@ class SearchBarView extends WidgetView<CustomSearchBar, CustomSearchBarState> {
       color: theme.bg1.withOpacity(.7),
     );
     return FocusScope(
-      onKey: _handleKeyPress,
+      onKeyEvent: _handleKeyPress,
       child: Stack(
         children: <Widget>[
           /// Clickable underlay, closes on press
