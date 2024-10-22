@@ -19,7 +19,8 @@ class _LightDarkToggleSwitchState extends State<LightDarkToggleSwitch> {
   int lastSwitchTime = 0;
 
   void _handleTogglePressed(BuildContext context) {
-    if (DateTime.now().millisecondsSinceEpoch - lastSwitchTime < CustomDurations.medium.inMilliseconds) {
+    if (DateTime.now().millisecondsSinceEpoch - lastSwitchTime <
+        CustomDurations.medium.inMilliseconds) {
       return;
     }
     lastSwitchTime = DateTime.now().millisecondsSinceEpoch;
@@ -34,7 +35,8 @@ class _LightDarkToggleSwitchState extends State<LightDarkToggleSwitch> {
     // Use a stateful builder so we can rebuild ourselves on click without going to a StatefulWidget
     return Row(
       children: [
-        StyledImageIcon(StyledIcons.lightMode, size: iconSize, color: Colors.white),
+        StyledImageIcon(StyledIcons.lightMode,
+            size: iconSize, color: Colors.white),
         HSpace(Insets.sm),
         Stack(children: [
           StyledContainer(
@@ -49,7 +51,10 @@ class _LightDarkToggleSwitchState extends State<LightDarkToggleSwitch> {
             builder: (_, value, __) => StyledContainer(
               theme.surface,
               duration: CustomDurations.medium,
-              margin: EdgeInsets.only(top: 2, left: 2 + (innerWidth - 20 - 4) * (value as double? ?? 1), right: 2),
+              margin: EdgeInsets.only(
+                  top: 2,
+                  left: 2 + (innerWidth - 20 - 4) * (value as double? ?? 1),
+                  right: 2),
               borderRadius: BorderRadius.circular(99),
               width: 20,
               height: 20,
@@ -57,7 +62,8 @@ class _LightDarkToggleSwitchState extends State<LightDarkToggleSwitch> {
           ),
         ]),
         HSpace(Insets.sm),
-        StyledImageIcon(StyledIcons.darkMode, size: iconSize - 2, color: ColorUtils.shiftHsl(theme.accent1, -.1)),
+        StyledImageIcon(StyledIcons.darkMode,
+            size: iconSize - 2, color: ColorUtils.shiftHsl(theme.accent1, -.1)),
       ],
     ).clickable(() => _handleTogglePressed(context), opaque: true);
   }

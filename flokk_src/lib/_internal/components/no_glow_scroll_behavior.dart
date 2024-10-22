@@ -9,7 +9,8 @@ class NoGlowScrollBehavior extends ScrollBehavior {
         PointerDeviceKind.stylus,
       };
   @override
-  Widget buildViewportChrome(BuildContext context, Widget child, AxisDirection axisDirection) {
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
     return child;
   }
 }

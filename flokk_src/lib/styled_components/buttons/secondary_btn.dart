@@ -9,13 +9,15 @@ class SecondaryTextBtn extends StatelessWidget {
   final String label;
   final VoidCallback? onPressed;
 
-  const SecondaryTextBtn(this.label, {Key? key, this.onPressed}) : super(key: key);
+  const SecondaryTextBtn(this.label, {Key? key, this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     AppTheme theme = context.watch();
     TextStyle txtStyle = TextStyles.Footnote.textColor(theme.accent1Darker);
-    return SecondaryBtn(onPressed: onPressed, child: Text(label, style: txtStyle));
+    return SecondaryBtn(
+        onPressed: onPressed, child: Text(label, style: txtStyle));
   }
 }
 
@@ -25,7 +27,8 @@ class SecondaryIconBtn extends StatelessWidget {
   final VoidCallback? onPressed;
   final Color? color;
 
-  const SecondaryIconBtn(this.icon, {Key? key, this.onPressed, this.color}) : super(key: key);
+  const SecondaryIconBtn(this.icon, {Key? key, this.onPressed, this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +79,8 @@ class _SecondaryBtnState extends State<SecondaryBtn> {
         minHeight: widget.minHeight,
         contentPadding: EdgeInsets.all(widget.contentPadding),
         bgColor: theme.surface,
-        outlineColor: (_isMouseOver ? theme.accent1 : theme.grey).withOpacity(.35),
+        outlineColor:
+            (_isMouseOver ? theme.accent1 : theme.grey).withOpacity(.35),
         hoverColor: theme.surface,
         onFocusChanged: widget.onFocusChanged,
         downColor: theme.greyWeak.withOpacity(.35),

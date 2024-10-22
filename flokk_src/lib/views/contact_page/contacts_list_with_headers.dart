@@ -32,7 +32,8 @@ class ContactsListWithHeaders extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ContactsListWithHeadersState createState() => _ContactsListWithHeadersState();
+  _ContactsListWithHeadersState createState() =>
+      _ContactsListWithHeadersState();
 }
 
 class _ContactsListWithHeadersState extends State<ContactsListWithHeaders> {
@@ -41,14 +42,17 @@ class _ContactsListWithHeadersState extends State<ContactsListWithHeaders> {
   List<ContactData> get checked => widget.checkedContacts;
 
   bool _getIsChecked(String id) {
-    ContactData? c = widget.checkedContacts.firstWhereOrNull((_c) => _c.id == id);
+    ContactData? c =
+        widget.checkedContacts.firstWhereOrNull((_c) => _c.id == id);
     return c != null;
   }
 
   Tuple2<List<ContactData>, int> getSortedContactsWithFavoriteCount() {
-    List<ContactData> starred = widget.contacts.toList()..removeWhere((element) => !element.isStarred);
+    List<ContactData> starred = widget.contacts.toList()
+      ..removeWhere((element) => !element.isStarred);
     int starCount = starred.length;
-    List<ContactData> nonStarred = widget.contacts.toList()..removeWhere((element) => element.isStarred);
+    List<ContactData> nonStarred = widget.contacts.toList()
+      ..removeWhere((element) => element.isStarred);
     return Tuple2(starred..addAll({...nonStarred}), starCount);
   }
 
@@ -57,7 +61,8 @@ class _ContactsListWithHeadersState extends State<ContactsListWithHeaders> {
     AppTheme theme = context.watch();
     return LayoutBuilder(
       builder: (_, constraints) {
-        Tuple2<List<ContactData>, int> contactsWithFavCount = getSortedContactsWithFavoriteCount();
+        Tuple2<List<ContactData>, int> contactsWithFavCount =
+            getSortedContactsWithFavoriteCount();
         List<ContactData> contacts = contactsWithFavCount.item1;
         int favCount = contactsWithFavCount.item2;
         int itemCount = contacts.length + 1;
@@ -84,18 +89,22 @@ class _ContactsListWithHeadersState extends State<ContactsListWithHeaders> {
                     /// Inject 1 or 2 header rows into the results
                     bool isFirstHeader = i == 0;
                     bool isSecondHeader = i == favCount + 1 && favCount != 0;
-                    if (isFirstHeader || (isSecondHeader && !widget.searchMode)) {
+                    if (isFirstHeader ||
+                        (isSecondHeader && !widget.searchMode)) {
                       String headerText = "SEARCH RESULTS";
                       int count = contacts.length;
                       if (!widget.searchMode) {
                         bool isFavorite = i == 0 && favCount > 0;
-                        headerText = isFavorite ? "FAVORITE CONTACTS" : "OTHER CONTACTS";
-                        count = isFavorite ? favCount : contacts.length - favCount;
+                        headerText =
+                            isFavorite ? "FAVORITE CONTACTS" : "OTHER CONTACTS";
+                        count =
+                            isFavorite ? favCount : contacts.length - favCount;
                       }
 
                       /// Header text
                       return Container(
-                        child: Text("$headerText ($count)", style: TextStyles.T1.textColor(theme.accent1Dark)),
+                        child: Text("$headerText ($count)",
+                            style: TextStyles.T1.textColor(theme.accent1Dark)),
                         alignment: Alignment.bottomLeft,
                         margin: EdgeInsets.only(bottom: Insets.l + 4),
                       );
@@ -112,7 +121,8 @@ class _ContactsListWithHeadersState extends State<ContactsListWithHeaders> {
                         key: ValueKey(c.id),
                         // Pass our width into the renderers as an optimization, so they don't need to calculate their own
                         parentWidth: constraints.maxWidth,
-                        isSelected: widget.selectedContact != null && c.id == widget.selectedContact!.id,
+                        isSelected: widget.selectedContact != null &&
+                            c.id == widget.selectedContact!.id,
                         isChecked: _getIsChecked(c.id),
                       );
                     }

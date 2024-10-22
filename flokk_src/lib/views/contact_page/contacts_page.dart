@@ -29,7 +29,8 @@ class ContactsPage extends StatefulWidget {
 }
 
 class ContactsPageState extends State<ContactsPage> {
-  Future<void> handleRefreshTriggered() async => await RefreshContactsCommand(context).execute();
+  Future<void> handleRefreshTriggered() async =>
+      await RefreshContactsCommand(context).execute();
 
   @override
   Widget build(BuildContext context) => _ContactsPageView(this);
@@ -58,9 +59,11 @@ class _ContactsPageView extends WidgetView<ContactsPage, ContactsPageState> {
                 /// Wrap content in PlaceholderSwitcher, which will handle empty results
                 return PlaceholderContentSwitcher(
                   hasContent: () => sorted.isNotEmpty,
-                  placeholder: ContactListPlaceholder(isSearching: widget.searchEngine.hasQuery),
+                  placeholder: ContactListPlaceholder(
+                      isSearching: widget.searchEngine.hasQuery),
                   showOutline: false,
-                  placeholderPadding: EdgeInsets.only(top: Insets.m * 1.5, right: Insets.m, bottom: Insets.m),
+                  placeholderPadding: EdgeInsets.only(
+                      top: Insets.m * 1.5, right: Insets.m, bottom: Insets.m),
 
                   /// ContactList
                   content: ContactsListWithHeaders(

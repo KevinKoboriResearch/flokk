@@ -115,10 +115,13 @@ class CustomSearchBarState extends State<CustomSearchBar> {
     if (evt is RawKeyDownEvent) {
       if (evt.logicalKey == LogicalKeyboardKey.keyK && evt.isControlPressed) {
         isOpen = true;
-      } else if (textFocusNode.hasFocus && evt.logicalKey == LogicalKeyboardKey.enter) {
+      } else if (textFocusNode.hasFocus &&
+          evt.logicalKey == LogicalKeyboardKey.enter) {
         handleSearchSubmitted();
-      } else if (textFocusNode.hasFocus && evt.logicalKey == LogicalKeyboardKey.backspace) {
-        if (textKey.currentState != null && (textKey.currentState?.text.isEmpty ?? true)) {
+      } else if (textFocusNode.hasFocus &&
+          evt.logicalKey == LogicalKeyboardKey.backspace) {
+        if (textKey.currentState != null &&
+            (textKey.currentState?.text.isEmpty ?? true)) {
           final tl = tmpSearch.tagList;
           final cl = tmpSearch.filterContactList;
           if (cl.isNotEmpty) {

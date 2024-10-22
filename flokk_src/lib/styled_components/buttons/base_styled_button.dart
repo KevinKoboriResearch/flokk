@@ -82,9 +82,15 @@ class _BaseStyledBtnState extends State<BaseStyledBtn> {
         boxShadow: _isFocused
             ? [
                 BoxShadow(
-                    color: theme.focus.withOpacity(0.25), offset: Offset.zero, blurRadius: 8.0, spreadRadius: 0.0),
+                    color: theme.focus.withOpacity(0.25),
+                    offset: Offset.zero,
+                    blurRadius: 8.0,
+                    spreadRadius: 0.0),
                 BoxShadow(
-                    color: widget.bgColor ?? theme.surface, offset: Offset.zero, blurRadius: 8.0, spreadRadius: -4.0),
+                    color: widget.bgColor ?? theme.surface,
+                    offset: Offset.zero,
+                    blurRadius: 8.0,
+                    spreadRadius: -4.0),
               ]
             : [],
       ),
@@ -114,7 +120,7 @@ class _BaseStyledBtnState extends State<BaseStyledBtn> {
         fillColor: Colors.transparent,
         hoverColor: widget.hoverColor ?? theme.surface,
         highlightColor: widget.downColor ?? theme.accent1.withOpacity(.1),
-        focusColor: widget.focusColor?? Colors.grey.withOpacity(0.35),
+        focusColor: widget.focusColor ?? Colors.grey.withOpacity(0.35),
         child: Opacity(
           child: Padding(
             padding: widget.contentPadding,
@@ -122,7 +128,8 @@ class _BaseStyledBtnState extends State<BaseStyledBtn> {
           ),
           opacity: widget.onPressed != null ? 1 : .7,
         ),
-        constraints: BoxConstraints(minHeight: widget.minHeight, minWidth: widget.minWidth),
+        constraints: BoxConstraints(
+            minHeight: widget.minHeight, minWidth: widget.minWidth),
         onPressed: widget.onPressed,
         shape: widget.shape ??
             RoundedRectangleBorder(

@@ -116,9 +116,11 @@ class ContactData {
 
   ContactData();
 
-  factory ContactData.fromJson(Map<String, dynamic> json) => _$ContactDataFromJson(json);
+  factory ContactData.fromJson(Map<String, dynamic> json) =>
+      _$ContactDataFromJson(json);
 
-  bool get hasName => !StringUtils.isEmpty("$nameGiven$nameMiddle$nameFamily$nameSuffix$namePrefix");
+  bool get hasName => !StringUtils.isEmpty(
+      "$nameGiven$nameMiddle$nameFamily$nameSuffix$namePrefix");
 
   bool get hasLabel => groupList.isNotEmpty;
 
@@ -152,7 +154,8 @@ class ContactData {
 
   bool get hasAnySocial => hasGit || hasTwitter;
 
-  bool hasSameSocial(ContactData other) => other.twitterHandle == twitterHandle && other.gitUsername == gitUsername;
+  bool hasSameSocial(ContactData other) =>
+      other.twitterHandle == twitterHandle && other.gitUsername == gitUsername;
 
   bool hasSocialOfType(SocialActivityType type) {
     if (type == SocialActivityType.Git) return hasGit;
@@ -172,7 +175,8 @@ class ContactData {
 
   String get searchable => _searchable;
 
-  String _getSearchableFields() => "$nameGiven $nameMiddle $nameFamily $nameMiddlePhonetic $nameGivenPhonetic "
+  String _getSearchableFields() =>
+      "$nameGiven $nameMiddle $nameFamily $nameMiddlePhonetic $nameGivenPhonetic "
       "$namePrefix $nameSuffix $nameFull $twitterHandle $gitUsername $notes $birthday $nickname"
       "$jobTitle $jobDepartment $jobCompany ${phoneList.map((x) => x.number).join(",")}"
       "${addressList.map((x) => x.getFullAddress()).join(",")}"
@@ -198,7 +202,8 @@ class ContactData {
   List<DateMixin> get allDates {
     //Need to explicitly cast x as DateMixin, otherwise will throw CastError when trying to add birthday
     // ignore: unnecessary_cast
-    List<DateMixin> dates = hasEvents ? eventList.map((e) => e as DateMixin).toList() : [];
+    List<DateMixin> dates =
+        hasEvents ? eventList.map((e) => e as DateMixin).toList() : [];
 
     if (hasValidDateForBirthday) {
       dates.add(birthday);
@@ -235,14 +240,17 @@ class AddressData {
 
   AddressData();
 
-  get isEmpty => StringUtils.isEmpty("$street$poBox$neighborhood$city$region$postcode$country$type");
+  get isEmpty => StringUtils.isEmpty(
+      "$street$poBox$neighborhood$city$region$postcode$country$type");
 
-  factory AddressData.fromJson(Map<String, dynamic> json) => _$AddressDataFromJson(json);
+  factory AddressData.fromJson(Map<String, dynamic> json) =>
+      _$AddressDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$AddressDataToJson(this);
 
   String getFullAddress() {
-    String ss(String value, [String? extra]) => StringUtils.safeGet(value, extra);
+    String ss(String value, [String? extra]) =>
+        StringUtils.safeGet(value, extra);
 
     String streetAddress = "${ss(street, ", ")}${ss(formattedAddress)}";
     String address = "${ss(streetAddress, " \n")}";
@@ -274,7 +282,8 @@ class InstantMessageData {
 
   get isEmpty => StringUtils.isEmpty("$username$type");
 
-  factory InstantMessageData.fromJson(Map<String, dynamic> json) => _$InstantMessageDataFromJson(json);
+  factory InstantMessageData.fromJson(Map<String, dynamic> json) =>
+      _$InstantMessageDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$InstantMessageDataToJson(this);
 }
@@ -289,7 +298,8 @@ class PhoneData {
 
   get isEmpty => StringUtils.isEmpty("$number$type");
 
-  factory PhoneData.fromJson(Map<String, dynamic> json) => _$PhoneDataFromJson(json);
+  factory PhoneData.fromJson(Map<String, dynamic> json) =>
+      _$PhoneDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$PhoneDataToJson(this);
 }
@@ -303,7 +313,8 @@ class WebsiteData {
 
   get isEmpty => StringUtils.isEmpty("$href$type");
 
-  factory WebsiteData.fromJson(Map<String, dynamic> json) => _$WebsiteDataFromJson(json);
+  factory WebsiteData.fromJson(Map<String, dynamic> json) =>
+      _$WebsiteDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$WebsiteDataToJson(this);
 }
@@ -317,7 +328,8 @@ class EmailData {
 
   get isEmpty => StringUtils.isEmpty("$value$type");
 
-  factory EmailData.fromJson(Map<String, dynamic> json) => _$EmailDataFromJson(json);
+  factory EmailData.fromJson(Map<String, dynamic> json) =>
+      _$EmailDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$EmailDataToJson(this);
 }
@@ -331,7 +343,8 @@ class RelationData {
 
   get isEmpty => StringUtils.isEmpty("$person$type");
 
-  factory RelationData.fromJson(Map<String, dynamic> json) => _$RelationDataFromJson(json);
+  factory RelationData.fromJson(Map<String, dynamic> json) =>
+      _$RelationDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$RelationDataToJson(this);
 }
@@ -347,7 +360,8 @@ class EventData with DateMixin {
 
   get isEmpty => date == DateTime(0, 1, 1) || date.toString().isEmpty;
 
-  factory EventData.fromJson(Map<String, dynamic> json) => _$EventDataFromJson(json);
+  factory EventData.fromJson(Map<String, dynamic> json) =>
+      _$EventDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$EventDataToJson(this);
 }
@@ -363,7 +377,8 @@ class BirthdayData with DateMixin {
 
   get isEmpty => StringUtils.isEmpty("$text");
 
-  factory BirthdayData.fromJson(Map<String, dynamic> json) => _$BirthdayDataFromJson(json);
+  factory BirthdayData.fromJson(Map<String, dynamic> json) =>
+      _$BirthdayDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$BirthdayDataToJson(this);
 }

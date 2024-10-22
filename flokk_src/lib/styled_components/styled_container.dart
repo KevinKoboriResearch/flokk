@@ -36,6 +36,10 @@ class StyledContainer extends StatelessWidget {
         margin: margin,
         alignment: align,
         duration: duration,
-        decoration: BoxDecoration(color: color, borderRadius: borderRadius, boxShadow: shadows, border: border));
+        decoration: BoxDecoration(
+            color: color,
+            borderRadius: borderRadius,
+            boxShadow: shadows,
+            border: border));
   }
 }

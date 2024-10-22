@@ -114,13 +114,16 @@ class TextStyles {
 
   static TextStyle get Body3 => lato.size(FontSizes.s11);
 
-  static TextStyle get Callout => quicksand.size(FontSizes.s14).letterSpace(1.75);
+  static TextStyle get Callout =>
+      quicksand.size(FontSizes.s14).letterSpace(1.75);
 
   static TextStyle get CalloutFocus => Callout.bold;
 
-  static TextStyle get Btn => quicksand.bold.size(FontSizes.s14).letterSpace(1.75);
+  static TextStyle get Btn =>
+      quicksand.bold.size(FontSizes.s14).letterSpace(1.75);
 
-  static TextStyle get BtnSelected => quicksand.size(FontSizes.s14).letterSpace(1.75);
+  static TextStyle get BtnSelected =>
+      quicksand.size(FontSizes.s14).letterSpace(1.75);
 
   static TextStyle get Footnote => quicksand.bold.size(FontSizes.s11);
 

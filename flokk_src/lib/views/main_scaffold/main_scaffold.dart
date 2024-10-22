@@ -37,12 +37,14 @@ class MainScaffoldState extends State<MainScaffold> {
     PageType.ContactsList,
   ];
 
-  SimpleValueNotifier<List<ContactData>> checkedContactsNotifier = SimpleValueNotifier([]);
+  SimpleValueNotifier<List<ContactData>> checkedContactsNotifier =
+      SimpleValueNotifier([]);
 
   late AppModel appModel;
 
   /// Easily lookup the current state of the SidePanel
-  ContactPanelState? get contactsPanel => MainScaffold.sidePanelKey.currentState;
+  ContactPanelState? get contactsPanel =>
+      MainScaffold.sidePanelKey.currentState;
 
   CustomSearchBarState? get searchBar => MainScaffold.searchBarKey.currentState;
 
@@ -68,7 +70,8 @@ class MainScaffoldState extends State<MainScaffold> {
     appModel.selectedContact = ContactData();
   }
 
-  void editSelectedContact(String section) => contactsPanel?.showEditView(section);
+  void editSelectedContact(String section) =>
+      contactsPanel?.showEditView(section);
 
   //TODO: This should be a command
   /// Attempt to change current page, this might not complete if user is currently editing
@@ -101,7 +104,8 @@ class MainScaffoldState extends State<MainScaffold> {
   }
 
   /// Change selected contact, this might not complete if user is currently editing
-  Future<void> trySetSelectedContact(ContactData? value, {showSocial = false}) async {
+  Future<void> trySetSelectedContact(ContactData? value,
+      {showSocial = false}) async {
     if (!await showDiscardWarningIfNecessary()) return;
     final currentlySelectedContact = appModel.selectedContact;
     if (value != null && currentlySelectedContact != null) {

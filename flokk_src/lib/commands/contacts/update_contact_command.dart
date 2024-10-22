@@ -7,10 +7,12 @@ import 'package:flokk/models/app_model.dart';
 import 'package:flokk/services/service_result.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class UpdateContactCommand extends AbstractCommand with AuthorizedServiceCommandMixin {
+class UpdateContactCommand extends AbstractCommand
+    with AuthorizedServiceCommandMixin {
   UpdateContactCommand(BuildContext c) : super(c);
 
-  Future<ContactData?> execute(ContactData contact, {bool updateSocial: false, bool tryAgainOnError = true}) async {
+  Future<ContactData?> execute(ContactData contact,
+      {bool updateSocial: false, bool tryAgainOnError = true}) async {
     if (AppModel.forceIgnoreGoogleApiCalls) return null;
     Log.p("[UpdateContactCommand]");
 
@@ -18,14 +20,16 @@ class UpdateContactCommand extends AbstractCommand with AuthorizedServiceCommand
       ServiceResult<ContactData> result;
       if (contact.isNew) {
         /// Update remote database
-        result = await googleRestService.contacts.create(authModel.googleAccessToken, contact);
+        result = await googleRestService.contacts
+            .create(authModel.googleAccessToken, contact);
         if (result.success) {
           result.content!.isRecentlyAdded = true;
           contactsModel.addContact(result.content!);
         }
       } else {
         // Check whether git or twitter changed, if they did we want to reset their cooldowns
-        final ContactData oldContact = contactsModel.getContactById(contact.id)!;
+        final ContactData oldContact =
+            contactsModel.getContactById(contact.id)!;
         bool gitChanged = oldContact.gitUsername != contact.gitUsername;
         if (gitChanged) {
           githubModel.removeEvents(oldContact.gitUsername);
@@ -48,7 +52,8 @@ class UpdateContactCommand extends AbstractCommand with AuthorizedServiceCommand
         if (updateSocial) RefreshSocialCommand(context).execute([contact]);
 
         /// Update remote database
-        result = await googleRestService.contacts.set(authModel.googleAccessToken, contact);
+        result = await googleRestService.contacts
+            .set(authModel.googleAccessToken, contact);
 
         /// Since we get back the updated object, we can inject it straight into the model to keep us in sync
         print("Success: ${result.success}, etag=${contact.etag}");

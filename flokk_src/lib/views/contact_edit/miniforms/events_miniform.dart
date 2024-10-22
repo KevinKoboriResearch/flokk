@@ -13,7 +13,8 @@ import 'package:flokk/views/contact_edit/miniforms/controls/textfield_with_date_
 import 'package:flutter/material.dart';
 
 class ContactEventsMiniForm extends BaseMiniForm {
-  ContactEventsMiniForm(ContactEditFormState form, {Key? key}) : super(form, ContactSectionType.events, key: key);
+  ContactEventsMiniForm(ContactEditFormState form, {Key? key})
+      : super(form, ContactSectionType.events, key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,9 @@ class ContactEventsMiniForm extends BaseMiniForm {
               typeHint: "Type",
               initialText: DateFormats.google.format(item.date),
               initialType: item.type,
-              types: ["Anniversary", "Hire Date", "Other"].map((e) => e.toUpperCase()).toList(),
+              types: ["Anniversary", "Hire Date", "Other"]
+                  .map((e) => e.toUpperCase())
+                  .toList(),
               onDateChanged: (s, d) => setFormState(() => item.date = d),
               onTypeChanged: (value) => setFormState(() => item.type = value),
               onDelete: () => handleDeletePressed(context, item, itemList),
@@ -43,7 +46,8 @@ class ContactEventsMiniForm extends BaseMiniForm {
         }).toList();
 
         /// Add a "Add New" btn to the column if certain conditions are met
-        injectAddNewBtnIfNecessary<EventData>("Event", kids, itemList, (e) => e.isEmpty, newItemBuilder);
+        injectAddNewBtnIfNecessary<EventData>(
+            "Event", kids, itemList, (e) => e.isEmpty, newItemBuilder);
 
         /// Return the actual Column of content
         return SeparatedColumn(
@@ -82,11 +86,13 @@ class ContactEventsMiniForm extends BaseMiniForm {
 
         /// Type dropdown
         StyledAutoCompleteDropdown(
-            items: types,
-            hint: typeHint,
-            initialValue: initialType,
-            onChanged: onTypeChanged,
-            onFocusChanged: (v) => handleFocusChanged(v, context)).width(typeWidth).translate(offset: Offset(0, 3)),
+                items: types,
+                hint: typeHint,
+                initialValue: initialType,
+                onChanged: onTypeChanged,
+                onFocusChanged: (v) => handleFocusChanged(v, context))
+            .width(typeWidth)
+            .translate(offset: Offset(0, 3)),
         HSpace(2),
 
         /// Delete Btn
@@ -95,7 +101,9 @@ class ContactEventsMiniForm extends BaseMiniForm {
           size: 20,
           onPressed: showDelete ? onDelete : null,
           padding: EdgeInsets.all(Insets.sm),
-        ).opacity(showDelete ? 1 : 0, animate: true).animate(CustomDurations.fast, Curves.linear),
+        )
+            .opacity(showDelete ? 1 : 0, animate: true)
+            .animate(CustomDurations.fast, Curves.linear),
       ],
     );
   }
